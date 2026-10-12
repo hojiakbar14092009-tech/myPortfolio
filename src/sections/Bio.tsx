@@ -165,7 +165,7 @@ function SubjectCard({ s, i }: { s: (typeof subjects)[number]; i: number }) {
   return (
     <motion.div
       ref={ref}
-      className={`group relative lg:absolute lg:left-[var(--l)] lg:top-[var(--t)] lg:w-[var(--w)] ${i === 4 ? 'col-span-2 mx-auto w-1/2 sm:col-span-1 sm:w-auto' : ''}`}
+      className={`group relative xl:absolute xl:left-[var(--l)] xl:top-[var(--t)] xl:w-[var(--w)] sm:col-span-2 ${i === 3 ? 'sm:col-start-2' : ''} ${i === 4 ? 'col-span-2 mx-auto w-1/2 sm:mx-0 sm:w-auto' : ''}`}
       style={{ '--l': `${p.l}%`, '--t': `${p.t}%`, '--w': `${p.w}%` } as React.CSSProperties}
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 200, scale: 0.55, rotate: p.r * 4, rotateX: 45 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotate: p.r, rotateX: 0 }}
@@ -175,7 +175,7 @@ function SubjectCard({ s, i }: { s: (typeof subjects)[number]; i: number }) {
       onHoverStart={() => setHover(true)}
       onHoverEnd={() => setHover(false)}
     >
-      <span data-alive className="absolute -right-2 -top-4 z-10 inline-flex animate-[float_6s_ease-in-out_infinite] items-center gap-2 rounded-full bg-fg px-3 py-1 font-mono text-xs text-bg" style={{ animationDelay: `${-i * 1.3}s` }}>
+      <span data-alive className="absolute right-2 -top-4 z-10 inline-flex xl:-right-2 animate-[float_6s_ease-in-out_infinite] items-center gap-2 rounded-full bg-fg px-3 py-1 font-mono text-xs text-bg" style={{ animationDelay: `${-i * 1.3}s` }}>
         <span className="h-1.5 w-1.5 rounded-full bg-accent" />
         {s.label}
       </span>
@@ -202,9 +202,9 @@ function SubjectCard({ s, i }: { s: (typeof subjects)[number]; i: number }) {
               </span>
             )}
           </span>
-          <span className="flex items-baseline justify-between gap-2">
+          <span className="flex flex-col items-start gap-0.5">
             <span className="font-display text-xl font-medium">{s.name}</span>
-            <span className="text-right text-xs text-muted">{s.why}</span>
+            <span className="text-xs text-muted">{s.why}</span>
           </span>
         </div>
       )}
@@ -214,7 +214,7 @@ function SubjectCard({ s, i }: { s: (typeof subjects)[number]; i: number }) {
 
 function LearningCollage() {
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-10 pt-4 sm:grid-cols-3 lg:relative lg:block lg:h-[clamp(36rem,58vw,50rem)] lg:pt-0 [perspective:1400px]">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-10 pt-4 sm:grid-cols-6 xl:relative xl:block xl:h-[clamp(36rem,52vw,50rem)] xl:pt-0 [perspective:1400px]">
       {subjects.map((s, i) => <SubjectCard key={s.key} s={s} i={i} />)}
     </div>
   );
@@ -286,7 +286,7 @@ function ChapterMedia({ c }: { c: Chapter }) {
   if (c.visual === 'code') return <CodeVisual />;
   if (c.photos.length === 2) {
     return (
-      <div className="relative isolate grid grid-cols-2 gap-[var(--gutter)]">
+      <div className="relative isolate grid [overflow-x:clip] grid-cols-2 gap-[var(--gutter)]">
         <MotifLayer m={c.motif} />
         {c.photos.map((p, i) => (
           <RevealImage key={p.name} name={p.name} alt={p.alt} pos={p.pos} reveal={p.reveal} delay={i * 0.15} caption={{ title: p.caption, meta: c.span.split(' · ')[i] ?? c.span }} sizes="(min-width: 1024px) 28vw, 45vw" className={`aspect-[3/4] ${i ? 'mt-[18%]' : ''}`} />
@@ -297,7 +297,7 @@ function ChapterMedia({ c }: { c: Chapter }) {
   const p = c.photos[0];
   const small = p.name === 'chess'; // source is only 299px wide — keep it small and honest
   return (
-    <div className={`relative isolate ${small ? 'max-w-md' : ''}`}>
+    <div className={`relative isolate [overflow-x:clip] ${small ? 'max-w-md' : ''}`}>
       {c.motif === 'bell' && <BellRound />}
       <MotifLayer m={c.motif} />
       <RevealImage name={p.name} alt={p.alt} pos={p.pos} reveal={p.reveal} caption={{ title: p.caption, meta: c.span }} sizes={small ? '448px' : '(min-width: 1024px) 60vw, 100vw'} className={small ? 'aspect-[16/9]' : 'aspect-[16/10]'} />

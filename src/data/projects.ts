@@ -79,7 +79,7 @@ export const projects: Project[] = [
     cover: 'barakali-1',
     shots: { desktop: ['barakali-1', 'barakali-2'], mobile: 'barakali-m' },
     overview:
-      'BarakaLi connects women who sew, bake and craft at home with the people who want their work. Artisans list handmade pieces for single or wholesale orders, customers pay online inside the platform, and BarakaLi keeps a 5% commission on each completed order.',
+      'BarakaLi connects women who sew, bake and craft at home with the people who want their work. Artisans list handmade pieces for single or wholesale orders, customers pay online inside the platform, and BarakaLi keeps a 2% commission on each completed order.',
     problem: {
       lead: 'Talent stays at home.',
       points: [
@@ -99,14 +99,14 @@ export const projects: Project[] = [
       { title: 'Reviews & complaints', text: 'One review per completed order feeds the artisan’s rating; every order has a complaint button.' },
     ],
     numbers: [
-      { value: 5, suffix: '%', label: 'platform commission' },
+      { value: 2, suffix: '%', label: 'platform commission' },
       { value: 5, label: 'people on the team' },
       { value: 15, suffix: ' min', label: 'payment hold' },
       { value: 24, suffix: ' h', label: 'to accept an order' },
     ],
     impact: [
       'Live on Vercel with a full order lifecycle, admin panel and Uzbek / Russian interface.',
-      'Money is handled in whole so’m with the commission computed server-side in one transaction.',
+      'Money is handled in whole so’m with the 2% commission computed server-side in one transaction.',
       'Covered by unit, integration and Playwright end-to-end tests.',
     ],
   },

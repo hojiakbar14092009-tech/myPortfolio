@@ -50,13 +50,15 @@ export function Contact() {
             Copy email
           </MagneticButton>
         ) : (
-          <MagneticButton href={site.github} external cursor="Open" className="h-40 w-40 bg-fg text-bg sm:h-48 sm:w-48">
-            Open GitHub
+          // No email yet: the primary action is the first channel on file (Telegram).
+          <MagneticButton href={site.socials[0].href} external cursor="Open" className="h-40 w-40 bg-fg text-bg sm:h-48 sm:w-48" label={`Message on ${site.socials[0].label}`}>
+            Say hi on {site.socials[0].label}
           </MagneticButton>
         )}
       </div>
 
       <ul className="mt-16 flex flex-wrap gap-x-10 gap-y-3 border-t hairline pt-8 text-lg">
+        {site.phone.display && <li><a className="group" href={site.phone.href}><TextRoll text={site.phone.display} /></a></li>}
         {site.email && <li><a className="group" href={`mailto:${site.email}`}><TextRoll text={site.email} /></a></li>}
         {site.socials.map((s) => (
           <li key={s.label}><a className="group" href={s.href} target="_blank" rel="noreferrer"><TextRoll text={s.label} /></a></li>

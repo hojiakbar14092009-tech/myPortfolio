@@ -10,14 +10,18 @@ export function startSmoothScroll() {
   if (lenis) return () => {};
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return nativeVelocity();
   lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 0.95 });
+  let lastEvent = 0;
   lenis.on('scroll', (l: Lenis) => {
+    lastEvent = performance.now();
     feedVelocity(l.velocity);
     listeners.forEach((f) => f());
   });
   let id = 0;
   const raf = (t: number) => {
     lenis?.raf(t);
-    if (lenis && !lenis.isScrolling && scrollVelocity.get() !== 0) feedVelocity(0); // settle skew when idle
+    // No scroll event for 100ms means we've stopped: settle the velocity-driven skews.
+    // (Lenis's own isScrolling flag doesn't reliably clear for native touch scrolling.)
+    if (scrollVelocity.get() !== 0 && performance.now() - lastEvent > 100) feedVelocity(0);
     id = requestAnimationFrame(raf);
   };
   id = requestAnimationFrame(raf);

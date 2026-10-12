@@ -88,8 +88,8 @@ export function Hero({ ready }: { ready: boolean }) {
           animate={ready ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: EXPO, delay: 1 }}
         >
-          I design and build web products end to end — from the first user flow to the last{' '}
-          <SwapWord word="deploy." />
+          I design and build web products end to end — from the first user flow to the{' '}
+          <span className="whitespace-nowrap">last <SwapWord word="deploy." /></span>
         </motion.p>
         <motion.a
           href="#about"

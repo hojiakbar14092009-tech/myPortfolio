@@ -7,10 +7,11 @@ export const site = {
   timeZone: 'Asia/Tashkent',
   github: 'https://github.com/hojiakbar14092009-tech',
   email: '',
+  phone: { display: '+998 77 210 53 88', href: 'tel:+998772105388' },
   socials: [
+    { label: 'Telegram', href: 'https://t.me/h009hss' },
+    { label: 'Instagram', href: 'https://instagram.com/h009hs' },
     { label: 'GitHub', href: 'https://github.com/hojiakbar14092009-tech' },
-    { label: 'Telegram', href: '' },
-    { label: 'Instagram', href: '' },
     { label: 'LinkedIn', href: '' },
   ].filter((s) => s.href),
 };

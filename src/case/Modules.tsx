@@ -133,7 +133,7 @@ const FLOW = [
   { who: 'Customer', what: 'Places an order', note: 'One piece or a bulk batch; the slot is held.' },
   { who: 'Customer', what: 'Pays online', note: 'Unpaid orders release after 15 minutes.' },
   { who: 'Artisan', what: 'Makes & delivers', note: 'Accept within 24 hours, or the order is refunded.' },
-  { who: 'BarakaLi', what: 'Keeps 5%', note: 'Everything else goes to the artisan.' },
+  { who: 'BarakaLi', what: 'Keeps 2%', note: 'Everything else goes to the artisan.' },
 ];
 
 export function FlowScrub() {

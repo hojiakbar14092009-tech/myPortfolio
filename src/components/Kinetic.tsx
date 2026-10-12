@@ -66,10 +66,10 @@ export function SwapWord({ word, className = '' }: { word: string; className?: s
   return (
     <span ref={ref} className={`relative inline-grid overflow-hidden align-bottom ${className}`} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
       <span className="sr-only">{word}</span>
-      <motion.span aria-hidden className="col-start-1 row-start-1" animate={{ y: serif ? '-105%' : '0%' }} transition={{ duration: 0.8, ease: QUART, delay: inView && !hover ? 0.5 : 0 }}>
+      <motion.span aria-hidden className="col-start-1 row-start-1" animate={{ y: serif ? '-140%' : '0%' }} transition={{ duration: 0.8, ease: QUART, delay: inView && !hover ? 0.5 : 0 }}>
         {word}
       </motion.span>
-      <motion.span aria-hidden className="serif-i col-start-1 row-start-1" initial={false} animate={{ y: serif ? '0%' : '105%' }} transition={{ duration: 0.8, ease: QUART, delay: inView && !hover ? 0.5 : 0 }}>
+      <motion.span aria-hidden className="serif-i col-start-1 row-start-1" initial={false} animate={{ y: serif ? '0%' : '140%' }} transition={{ duration: 0.8, ease: QUART, delay: inView && !hover ? 0.5 : 0 }}>
         {word}
       </motion.span>
     </span>
