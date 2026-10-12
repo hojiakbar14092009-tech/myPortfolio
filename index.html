@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hojiakbar Sharofiddinov — UI/UX Designer & Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Hojiakbar Sharofiddinov, a UI/UX designer and full-stack developer from Tashkent. Grand Musée, BarakaLi, Mizo and UstaGo." />
+    <meta name="theme-color" content="#0B0B0C" />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hojiakbar Sharofiddinov — HSH" />
+    <meta property="og:description" content="UI/UX designer & full-stack developer from Tashkent. From the ring to the code." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/ClashDisplay-600.woff2" as="font" type="font/woff2" crossorigin />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try { var t = localStorage.getItem('hsh-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+      // The hero portrait is the home page's LCP; preload it only there.
+      if (location.pathname === '/') {
+        var l = document.createElement('link');
+        l.rel = 'preload'; l.as = 'image'; l.type = 'image/avif';
+        l.setAttribute('imagesrcset', '/img/profile-480.avif 480w, /img/profile-960.avif 960w');
+        l.setAttribute('imagesizes', '(min-width: 1024px) 30vw, 90vw');
+        document.head.appendChild(l);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // First-visit intro: paint the preloader's opening frame before the JS bundle arrives.
+      try {
+        if (location.pathname === '/' && !sessionStorage.getItem('hsh-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+          document.getElementById('root').innerHTML =
+            '<div class="boot"><div class="absolute inset-0 flex flex-col items-center justify-center gap-10"><div class="w-40 sm:w-52" style="aspect-ratio:132/72"></div><div class="label flex w-40 justify-between tabular-nums !text-[#96938C] sm:w-52"><span>From the ring</span><span>000</span></div></div></div>';
+      } catch (e) {}
+    </script>
+    <noscript>Hojiakbar Sharofiddinov — UI/UX designer & full-stack developer. Enable JavaScript to view the portfolio.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+/*
+  HSH design tokens.
+  Colors are stored as "R G B" triplets so Tailwind can apply alpha (bg-fg/10 etc).
+  Palette: Ink #0B0B0C · Paper #F4F2EE · Ash #8A8780 · Graphite #2A2A2C · Champagne #C9B48A (rare accent).
+*/
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root,
+[data-theme='dark'] {
+  --bg: 11 11 12;        /* Ink */
+  --fg: 244 242 238;     /* Paper */
+  --muted: 150 147 140;  /* Ash, lifted for AA on Ink (6.4:1) */
+  --surface: 26 26 28;   /* Graphite, one step above Ink */
+  --accent: 201 180 138; /* Champagne */
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: 244 242 238;
+  --fg: 11 11 12;
+  --muted: 102 99 93;    /* 5.3:1 on Paper */
+  --surface: 232 229 223;
+  --accent: 140 116 70;  /* deeper champagne so focus rings keep 3:1 on Paper */
+  color-scheme: light;
+}
+
+:root {
+  /* Type scale (fluid). Display sizes are set per-component with clamp(). */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --text-xl: clamp(1.75rem, 1.3rem + 2vw, 3rem);
+  --text-2xl: clamp(2.5rem, 1.6rem + 4.5vw, 6rem);
+
+  /* Spacing rhythm */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --section: clamp(6rem, 4rem + 10vw, 14rem);
+
+  /* Motion: chrome uses 150–300ms; editorial reveals use 0.6–1.2s */
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-reveal: 900ms;
+}
