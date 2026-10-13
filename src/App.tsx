@@ -10,10 +10,11 @@ import { Preloader } from './components/Preloader';
 import { RippleFilter } from './components/RevealImage';
 import Home from './pages/Home';
 
+import ScrollReactiveBackground from './components/ScrollReactiveBackground';
+
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const LogoLab = lazy(() => import('./pages/LogoLab'));
 const Dust = lazy(() => import('./components/Dust'));
-const ScrollReactiveBackground = lazy(() => import('./components/ScrollReactiveBackground'));
 
 function firstVisit() {
   try {
@@ -52,9 +53,7 @@ export default function App() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[95] focus:rounded focus:bg-fg focus:px-4 focus:py-2 focus:text-bg">
         Skip to content
       </a>
-      <Suspense fallback={null}>
-        <ScrollReactiveBackground />
-      </Suspense>
+      <ScrollReactiveBackground />
       {dust && <Suspense fallback={null}><Dust /></Suspense>}
       <Nav />
       <div className="relative z-[1]">

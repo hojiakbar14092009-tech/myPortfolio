@@ -165,36 +165,51 @@ const FRAGMENT_SHADER_SRC = `
     vec3 accentColor = u_color_accent;
     vec3 secondColor = u_color_secondary;
 
-    // Section tint shifts:
-    // Hero: pure neutral tone with subtle champagne sheen
-    // Bio: higher contrast ash & graphite discipline
-    // Works: luminous deep accent
-    // Services: sleek monochromatic
-    // Contact: champagne warmth
-    vec3 tint = mix(accentColor, secondColor, w.y);
-    tint = mix(tint, vec3(0.9, 0.85, 0.75), u_section_contact * 0.35);
+    // Rich multi-spectral color palettes per section
+    vec3 heroGlow = vec3(0.79, 0.70, 0.54);        // Champagne gold
+    vec3 bioGlow = vec3(0.55, 0.65, 0.78);         // Slate / athletic cyan
+    vec3 workGlow = vec3(0.85, 0.45, 0.35);        // Caustic warm amber
+    vec3 servGlow = vec3(0.40, 0.75, 0.65);        // Clean emerald mint
+    vec3 contactGlowCol = vec3(0.88, 0.76, 0.48);  // Radiant champagne gold
 
-    // Light vs Dark modulation
-    float intensity = mix(0.065, 0.045, u_theme);
-    // Amplify slightly in active scroll
-    intensity += abs(u_velocity) * 0.035;
+    vec3 activeGlow = 
+      heroGlow * u_section_hero +
+      bioGlow * u_section_bio +
+      workGlow * u_section_work +
+      servGlow * u_section_serv +
+      contactGlowCol * u_section_contact;
 
-    // Chromatic dispersion (RGB micro-splitting across the warp vector)
-    float rField = compositeField;
-    float gField = clamp(compositeField + (w.x - 0.5) * 0.04 * (1.0 + abs(u_velocity) * 2.0), 0.0, 1.0);
-    float bField = clamp(compositeField + (w.y - 0.5) * 0.08 * (1.0 + abs(u_velocity) * 2.0), 0.0, 1.0);
+    // High visual fidelity intensity
+    float baseIntensity = mix(0.38, 0.26, u_theme);
+    // Dynamic surge on scroll momentum
+    float scrollSurge = abs(u_velocity) * 0.45;
+    float intensity = baseIntensity + scrollSurge;
 
-    vec3 layerColor = vec3(
-      mix(baseBg.r, tint.r, rField * intensity * 2.2),
-      mix(baseBg.g, tint.g, gField * intensity * 2.2),
-      mix(baseBg.b, tint.b, bField * intensity * 2.2)
+    // Dynamic Chromatic Dispersion across warp normals
+    vec2 disp = (w - 0.5) * (0.08 + abs(u_velocity) * 0.18);
+    float rField = clamp(compositeField + disp.x, 0.0, 1.0);
+    float gField = clamp(compositeField, 0.0, 1.0);
+    float bField = clamp(compositeField + disp.y, 0.0, 1.0);
+
+    // Dynamic contrast curves (elevates darks and illuminates crests)
+    rField = pow(rField, 1.4);
+    gField = pow(gField, 1.4);
+    bField = pow(bField, 1.4);
+
+    vec3 finalLight = vec3(
+      rField * activeGlow.r,
+      gField * activeGlow.g,
+      bField * activeGlow.b
     );
 
+    // Apply lighting over background ink/paper
+    vec3 layerColor = baseBg + finalLight * intensity;
+
     // Ambient Occlusion / Vignette falloff
-    float vignette = smoothstep(1.5, 0.4, length(st));
+    float vignette = smoothstep(1.6, 0.3, length(st));
     layerColor = mix(baseBg, layerColor, vignette);
 
-    // Film-grade microscopic dither to permanently prevent 8-bit banding on dark screens
+    // Microscopic film dither to permanently prevent 8-bit banding
     float dither = (hash(gl_FragCoord.xy + fract(u_time * 17.13)) - 0.5) * (1.0 / 255.0) * 1.5;
     layerColor += dither;
 
@@ -467,7 +482,7 @@ export default function ScrollReactiveBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full overflow-hidden transition-opacity duration-1000"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full overflow-hidden"
     >
       <canvas
         ref={canvasRef}
