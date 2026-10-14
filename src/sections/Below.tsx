@@ -3,11 +3,12 @@ import { useLocation, useNavigationType } from 'react-router-dom';
 import { scrollTo } from '../animations/smooth';
 import { Bio } from './Bio';
 import { Built } from './Built';
-import { Contact, Footer } from './Contact';
+import { ContactFooter } from './Contact';
+import { NoRisk } from './NoRisk';
 import { Services } from './Services';
 import { Works } from './Works';
 
-const STAGES = [Bio, Built, Works, Services, () => <><Contact /><Footer /></>];
+const STAGES = [Bio, Built, Works, Services, NoRisk, ContactFooter];
 
 // Sections mount one per idle slot so no single task blocks the main thread on load.
 const idle = (f: () => void) =>

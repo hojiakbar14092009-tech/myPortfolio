@@ -11,6 +11,8 @@ export type Chapter = {
   text: string;
   photos: { name: ImageName; alt: string; pos?: string; reveal: Reveal; caption: string }[];
   motif: Motif;
+  /** Background field chapter (see components/Field). */
+  field: string;
   visual?: 'learning' | 'code';
 };
 
@@ -26,6 +28,7 @@ export const chapters: Chapter[] = [
     text: 'I entered sport in 2nd grade, and my first discipline was chess. Two years of thinking several moves ahead — the way I now plan user flows and system architecture.',
     photos: [{ name: 'chess', alt: 'Chess pieces lined up on a board against a black background', reveal: 'tiles', caption: 'Chess' }],
     motif: 'chess',
+    field: 'chess',
   },
   {
     n: '02',
@@ -38,6 +41,7 @@ export const chapters: Chapter[] = [
       { name: 'swimming', alt: 'Hojiakbar resting at the edge of a night-lit swimming pool', pos: '50% 60%', reveal: 'blur', caption: 'Swimming' },
     ],
     motif: 'pitch',
+    field: 'football',
   },
   {
     n: '03',
@@ -47,6 +51,7 @@ export const chapters: Chapter[] = [
     text: 'I left chess and continued football alongside hand-to-hand combat. In 5th grade I left football and focused fully on combat for two years — learning to stay calm under pressure.',
     photos: [{ name: 'combat', alt: 'Two hand-to-hand combat fighters in white and blue exchanging punches', pos: '45% 50%', reveal: 'diagonal', caption: 'Hand-to-hand combat' }],
     motif: 'slash',
+    field: 'combat',
   },
   {
     n: '04',
@@ -56,6 +61,7 @@ export const chapters: Chapter[] = [
     text: "Then I found boxing — my favorite sport, which I've trained in for 3–4 years and still do. Boxing is pure discipline: show up every day, take hits, improve one detail at a time. That's exactly how I design and build.",
     photos: [{ name: 'boxing', alt: 'Hojiakbar in boxing gloves walking between heavy bags in the gym', pos: '75% 50%', reveal: 'blinds', caption: 'Boxing' }],
     motif: 'bell',
+    field: 'boxing',
   },
   {
     n: '05',
@@ -65,6 +71,7 @@ export const chapters: Chapter[] = [
     text: 'Before IT, I spent about a year studying Russian, English, mathematics, history and law — languages to communicate, math to think logically, history to understand people, and law to understand rules, rights and responsibility.',
     photos: [],
     motif: 'notes',
+    field: 'learning',
     visual: 'learning',
   },
   {
@@ -75,6 +82,7 @@ export const chapters: Chapter[] = [
     text: "At 16 I stepped into IT. In just one year I've designed and built real products: a museum website, a marketplace for women artisans, a home-repair booking platform and more. Same discipline, new ring.",
     photos: [],
     motif: 'code',
+    field: 'it',
     visual: 'code',
   },
 ];

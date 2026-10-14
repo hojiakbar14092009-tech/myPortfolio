@@ -119,5 +119,49 @@
     ],
     "ratio": 0.4621,
     "blur": "data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAADQBgCdASoUACsAPu1wqVEppqOiqrgKATAdiWcA0MwivHtnOkOmS2Pah8IbOZt+NwkFYbpPN0FQQ2xm9KtpjUAA/uQG0ZKE5gY9trUTh/y2eXoUbZ9CQ7GiE8d1M7XJ6WXisWvU79GY1oFGhHeqKgChGIK56iFRhCQ8HPatmKNaFUZvBjlzwYLZCNyTJqnkNYkoPPDwI/CYNblGDTABUxctvCcIll44srmJqA4WkSCa7/I23KvvbJ2Me3IrMpzUFnDWKS1SJxywBZIGk9Tw+lFQZFXAQeUDWZh9VC8AAAA="
+  },
+  "bg-boxing": {
+    "widths": [
+      640,
+      1280,
+      1791
+    ],
+    "ratio": 1.7821,
+    "blur": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAwCdASoUAAsAPu1mqk2ppaQiMAgBMB2JaQAAW+twZDyxCuToAAD+8p9O45jRO09C8Jey0MEUgN2yKOBh+B0axnsVAAAA"
+  },
+  "bg-chess": {
+    "widths": [
+      640,
+      1280,
+      1314
+    ],
+    "ratio": 0.9605,
+    "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABwBACdASoUABUAPu1orE8ppiQiMBgIATAdiWkAACHXxJTnM52c9Qbx6D5GCAD+UtE1SgKPOIpRGnJG6Y+BRdSbB6yYPA1k4+7iKXp6Ok8PuL1XDQudVbjmrcM4+ZsivWU6DSeeL7o11jZ7PqC3/ZKCvh9FNwAA"
+  },
+  "bg-combat": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.375,
+    "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASoUAA8APu1kqk4ppaQiMAgBMB2JaQAAW+kdCNM0+jVgLgAA/vQcK6uNK+yamA/a9kNV0fyPDaPaWCw58EdEQTI4jYB1ADu6DRQAAA=="
+  },
+  "bg-football": {
+    "widths": [
+      640,
+      948
+    ],
+    "ratio": 0.5,
+    "blur": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABQBQCdASoUACgAPu1irFAppSQiqrgMATAdiWkAA+V0QFAfxs4GOS8tdQjvTTETdbF1MAAA/vhoOWADtxfV13j92vQWINGFKhDAXeueB35dVuAM6NR536yZdRanBldJUbprZRjC1WOa3aT0NTmEBucek8Qnzgh8/t774YHNrsL89S7p+0wAAA=="
+  },
+  "bg-swimming": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.5,
+    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACQAwCdASoUAA0APu1oqk6ppiQiMAgBMB2JaQAAXg6ukBUvUCxAAP7u5r+DuV87+rPk1KfiuvtbpnEis1ncrADspPLS6N+qHAAAAA=="
   }
 }

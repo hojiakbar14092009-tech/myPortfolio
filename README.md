@@ -20,15 +20,18 @@ node scripts/og.mjs  # regenerate og.png and apple-touch-icon.png
 - Photos: originals in `./assets` are never modified; `npm run images` grades, sharpens, upscales (max 2×) and exports AVIF/WebP/JPG + blur placeholders.
 - **Learning collage:** drop photos into `assets/learning/` named `russian`, `english`, `math`, `history`, `law` (any image extension), then run `npm run images`. Each card switches from its typographic glyph to the photo automatically.
 - UstaGo has no screenshots yet; its visuals are an in-code UI composition (`src/components/UstaGoUI.tsx`).
+- **Chapter field (backgrounds):** drop images into `assets/backgrounds/` named `intro`, `chess`, `football`, `swimming`, `combat`, `boxing`, `learning`, `it`, `contact` (any image extension), then `npm run images`. Sections opt in with `data-field="<chapter>"`; a chapter without an image still runs its procedural motion layer. Config: `src/field/config.ts`; renderer: `src/field/renderer.ts` (WebGL in a worker via OffscreenCanvas, static photos on reduced motion / software GL).
+- **Intro:** first visit per session; the HSH plate holds until the visitor scrolls (or presses Enter / "Skip intro"). See `src/components/Preloader.tsx`.
 
 ## Structure
 
 ```
 src/animations   smooth scroll, velocity store, split reveals, magnetic, sound, interaction gate
 src/components   logo/, cursor & FX, RevealImage + Lightbox, devices, kinetic type
-src/sections     Hero, Bio (timeline + learning collage), Built (climax), Works, Services, Contact
+src/sections     Hero, Bio (timeline + learning collage), Built (climax), Works, Services, NoRisk, Contact (footer)
+src/field        chapter field: config, shaders, renderer, worker
 src/case         case-study signature scenes (GSAP, lazy-loaded)
-src/pages        Home, CaseStudy, LogoLab (/logo-lab, unlisted)
+src/pages        Home, Story (/story), CaseStudy, LogoLab (/logo-lab, unlisted)
 docs/BRAND.md    logo concept, construction, motion states
 ```
 

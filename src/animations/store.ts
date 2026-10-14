@@ -41,6 +41,10 @@ export function setTheme(t: 'dark' | 'light') {
   themeStore.set(t);
 }
 
+/** Active chapter of the background field (from the innermost [data-field] under the viewport centre). */
+export const fieldStore = createStore<string>('none');
+export const useField = () => useSyncExternalStore(fieldStore.subscribe, fieldStore.get, fieldStore.get);
+
 /** Header-logo flag: hidden while the preloader's logo flies into its place. */
 export const introStore = createStore<'playing' | 'done'>('done');
 export const useIntro = () => useSyncExternalStore(introStore.subscribe, introStore.get, introStore.get);

@@ -14,6 +14,7 @@ import type { Glyph } from './logo/logoPaths';
 
 const LINKS = [
   { id: 'about', label: 'About' },
+  { id: 'story', label: 'Story' },
   { id: 'work', label: 'Work' },
   { id: 'services', label: 'Services' },
   { id: 'contact', label: 'Contact' },
@@ -47,6 +48,7 @@ export function Nav() {
   const section = useSection();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
+  const [bar, setBar] = useState(false);
   const { scrollY } = useScroll();
   const skewX = useVelocitySkew(8, -1);
   const mag = useMagnetic<HTMLDivElement>(0.3);
@@ -55,6 +57,7 @@ export function Nav() {
 
   // Scroll down: mark compacts and links step aside. Scroll up: everything returns.
   useMotionValueEvent(scrollY, 'change', (v) => {
+    setBar(v > 24);
     const prev = scrollY.getPrevious() ?? 0;
     if (Math.abs(v - prev) < 2) return;
     setCompact(v > 240 && v > prev && !open);
@@ -70,7 +73,8 @@ export function Nav() {
 
   const go = (id: string) => {
     setOpen(false);
-    if (pathname !== '/') navigate('/', { state: { section: id } });
+    if (id === 'story') navigate('/story');
+    else if (pathname !== '/') navigate('/', { state: { section: id } });
     else if (document.getElementById(id)) scrollTo(`#${id}`);
     else {
       // Lower sections not mounted yet: mount them, then Below scrolls to the section from state.
@@ -82,8 +86,10 @@ export function Nav() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 text-[#F4F2EE] mix-blend-difference">
-        <div className="wrap flex h-20 items-center justify-between">
+      <header className="site-header fixed inset-x-0 top-0 z-50 text-fg">
+        {/* Its own bar once the page moves, so the mark never collides with the giant headlines below. */}
+        <motion.div aria-hidden className="absolute inset-0 border-b hairline bg-bg" initial={false} animate={{ opacity: bar && !open ? 1 : 0 }} transition={{ duration: 0.3, ease: EXPO }} />
+        <div className="wrap relative flex h-[4.5rem] items-center justify-between">
           <motion.div ref={mag.ref} style={{ x: mag.x, y: mag.y, skewX }} className="relative h-8 w-[60px]" data-header-logo>
             <Link to="/" aria-label="HSH — back to top" className="absolute inset-0 block rounded-sm" onClick={(e) => { e.preventDefault(); home(); }}>
               <motion.span className="absolute inset-0 block" animate={{ opacity: intro === 'done' && !compact ? 1 : 0, scale: compact ? 0.7 : 1 }} transition={{ duration: 0.35, ease: EXPO }}>

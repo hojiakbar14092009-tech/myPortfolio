@@ -20,7 +20,7 @@ type Props = {
 };
 
 const STORY_STEPS = ['chess', 'pitch', 'ripple', 'ropes', 'cursor'] as const;
-const STEP_MS = 330;
+const STEP_MS = 420;
 
 export function HSHLogo({
   className,

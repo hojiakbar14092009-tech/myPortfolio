@@ -7,7 +7,7 @@ const SITE = process.env.SITE_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:4173');
 
-const ROUTES = ['/', '/work/grand-musee', '/work/barakali', '/work/mizo', '/work/ustago'];
+const ROUTES = ['/', '/story', '/work/grand-musee', '/work/barakali', '/work/mizo', '/work/ustago'];
 
 function seo(): Plugin {
   return {

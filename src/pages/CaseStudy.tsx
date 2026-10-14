@@ -15,7 +15,7 @@ import { Counter, Scramble } from '../components/Kinetic';
 import { RevealImage } from '../components/RevealImage';
 import { Picture } from '../components/Picture';
 import { bySlug, projects, type Project } from '../data/projects';
-import { Footer } from '../sections/Contact';
+import { ContactFooter } from '../sections/Contact';
 import { UstaGoCover } from '../components/UstaGoUI';
 
 /** Device mockups rotate into place as they scroll through the viewport. */
@@ -204,7 +204,7 @@ export default function CaseStudy() {
           </div>
         </Link>
       </section>
-      <Footer />
+      <ContactFooter />
       </>) : <div className="h-[200vh]" aria-hidden />}
     </main>
   );

@@ -32,7 +32,7 @@ export function Hero({ ready }: { ready: boolean }) {
   };
 
   return (
-    <section ref={ref} onPointerMove={onMove} data-section="hero" data-section-label="Intro" className="wrap relative flex min-h-[100svh] flex-col overflow-x-clip pb-8 pt-28 lg:pt-32" aria-labelledby="hero-title">
+    <section ref={ref} onPointerMove={onMove} data-section="hero" data-section-label="Intro" data-field="intro" className="wrap relative flex min-h-[100svh] flex-col overflow-x-clip pb-8 pt-28 lg:pt-32" aria-labelledby="hero-title">
       <motion.div
         className="flex justify-between text-sm text-muted"
         initial={{ opacity: 0 }}

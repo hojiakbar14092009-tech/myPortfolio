@@ -45,10 +45,12 @@ function Card({ p, i, dim, onHover }: { p: Project; i: number; dim: boolean; onH
   return (
     <motion.article
       className={`col-span-12 [perspective:1400px] ${place.cls}`}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 260, scale: 0.55, rotateX: 35, filter: 'blur(18px)' }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: 'blur(0px)' }}
+      // Each card flies in out of depth, motion-blurred, and locks into its slot — one after another.
+      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 220, z: -900, scale: 0.7, rotateX: 32, filter: 'blur(20px)' }}
+      whileInView={{ opacity: 1, y: 0, z: 0, scale: 1, rotateX: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, margin: '0px 0px -6% 0px' }}
-      transition={{ duration: 1.4, ease: EXPO, delay: (i % 2) * 0.18 }}
+      style={{ transformPerspective: 1200 }}
+      transition={{ duration: 1.5, ease: EXPO, delay: (i % 2) * 0.22 }}
     >
       <motion.div animate={{ opacity: dim ? 0.35 : 1, scale: dim ? 0.95 : 1, filter: dim ? 'grayscale(1)' : 'grayscale(0)' }} transition={{ duration: 0.6, ease: EXPO }}>
         <div data-alive className="animate-[float_7s_ease-in-out_infinite]" style={{ animationDelay: place.float }}>
@@ -136,6 +138,7 @@ export function Works() {
       data-theme={theme === 'dark' ? 'light' : 'dark'}
       data-section="work"
       data-section-label="Selected works"
+      data-field="cover"
       className="invert-scope relative -mt-px pb-[var(--section)] pt-[clamp(4rem,8vw,7rem)]"
       aria-labelledby="work-title"
     >

@@ -9,9 +9,9 @@ export const site = {
   email: '',
   phone: { display: '+998 77 210 53 88', href: 'tel:+998772105388' },
   socials: [
-    { label: 'Telegram', href: 'https://t.me/h009hss' },
-    { label: 'Instagram', href: 'https://instagram.com/h009hs' },
-    { label: 'GitHub', href: 'https://github.com/hojiakbar14092009-tech' },
-    { label: 'LinkedIn', href: '' },
+    { label: 'Telegram', handle: '@h009hss', href: 'https://t.me/h009hss' },
+    { label: 'Instagram', handle: '@h009hs', href: 'https://instagram.com/h009hs' },
+    { label: 'GitHub', handle: 'hojiakbar14092009-tech', href: 'https://github.com/hojiakbar14092009-tech' },
+    { label: 'LinkedIn', handle: '', href: '' },
   ].filter((s) => s.href),
 };

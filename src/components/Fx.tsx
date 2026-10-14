@@ -76,7 +76,7 @@ export function Cursor() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[90]" style={{ opacity: visible ? 1 : 0, transition: 'opacity .2s' }}>
-      <motion.div className="absolute left-0 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent" style={{ x, y }} animate={{ scale: hot ? 0 : 1 }} />
+      <motion.div className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-accent" style={{ x, y, translateX: "-50%", translateY: "-50%" }} animate={{ scale: hot ? 0 : 1 }} />
       <motion.div
         className={`absolute left-0 top-0 flex items-center justify-center overflow-hidden rounded-full ${label || img ? 'bg-accent' : 'border border-[#F4F2EE] mix-blend-difference'}`}
         style={{ x: rx, y: ry, translateX: '-50%', translateY: '-50%' }}
@@ -124,7 +124,7 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed right-2.5 top-1/2 z-40 hidden -translate-y-1/2 items-center gap-3 text-[#F4F2EE] mix-blend-difference lg:flex">
+    <div aria-hidden className="scroll-rail pointer-events-none fixed right-2.5 top-1/2 z-40 hidden -translate-y-1/2 items-center gap-3 text-[#F4F2EE] mix-blend-difference lg:flex">
       <span className="label rotate-180 !text-[#F4F2EE]/70 [writing-mode:vertical-rl]"><Scramble text={label} play /></span>
       <span className="relative block h-[28vh] w-px bg-[#F4F2EE]/20">
         <motion.span className="absolute inset-0 origin-top bg-[#F4F2EE]" style={{ scaleY }} />

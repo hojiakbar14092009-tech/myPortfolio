@@ -77,6 +77,17 @@
 @keyframes story-ripple { 0% { transform: scale(0.4); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.15); opacity: 0.2; } }
 @keyframes story-blink { 50% { opacity: 0; } }
 
+/* Intro lock: idle loop of the plate */
+.intro-sweep { animation: intro-sweep 4.5s ease-in-out infinite 0.8s; transform: translateX(-50px); }
+@keyframes intro-sweep { 0%, 55% { transform: translateX(-50px); } 100% { transform: translateX(140px); } }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+@keyframes sway { 0%, 100% { transform: rotate(-4deg) translateX(-1.5%); } 50% { transform: rotate(4deg) translateX(1.5%); } }
+@keyframes scrollhint { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+
+/* While the intro is locked the site waits below a curtain; the opening lifts it (see Preloader). */
+html[data-intro] [data-site] { clip-path: inset(var(--curtain-y, 100vh) 0 0 0); }
+html[data-intro] .site-header, html[data-intro] .scroll-rail { opacity: var(--curtain, 0); }
+
 /* Static first frame painted from index.html before JS (replaced when React mounts). */
 .boot { position: fixed; inset: 0; z-index: 80; background: #0B0B0C; }
 

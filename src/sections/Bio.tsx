@@ -1,9 +1,10 @@
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { EXPO, QUART } from '../animations/ease';
 import { useVelocitySkew } from '../animations/store';
 import { Reveal, SplitText } from '../animations/useSplitReveal';
-import { Counter, FlipText, Marquee, Scramble, SwapWord } from '../components/Kinetic';
+import { Counter, FlipText, Marquee, Scramble, SwapWord, TextRoll } from '../components/Kinetic';
 import { openLightbox } from '../components/Lightbox';
 import { Picture } from '../components/Picture';
 import { RevealImage } from '../components/RevealImage';
@@ -212,7 +213,7 @@ function SubjectCard({ s, i }: { s: (typeof subjects)[number]; i: number }) {
   );
 }
 
-function LearningCollage() {
+export function LearningCollage() {
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-10 pt-4 sm:grid-cols-6 xl:relative xl:block xl:h-[clamp(36rem,52vw,50rem)] xl:pt-0 [perspective:1400px]">
       {subjects.map((s, i) => <SubjectCard key={s.key} s={s} i={i} />)}
@@ -230,7 +231,7 @@ const CODE = [
   '// same discipline, new ring',
 ];
 
-function CodeVisual() {
+export function CodeVisual() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [chars, setChars] = useState(reduce ? Infinity : 0);
@@ -354,7 +355,8 @@ function Timeline() {
             key={ch.n}
             data-section={`chapter-${ch.n}`}
             data-section-label={`${ch.n} · ${ch.sport}`}
-            className="flex min-h-[85svh] flex-col justify-center gap-8 py-20 pl-6 sm:pl-12"
+            data-field={ch.field}
+            className="relative flex min-h-[85svh] flex-col justify-center gap-8 py-20 pl-6 sm:pl-12"
             onViewportEnter={() => setActive(i)}
             viewport={{ amount: 0.4 }}
           >
@@ -371,6 +373,8 @@ function Timeline() {
             </Skew>
             <Reveal><p className="max-w-[56ch] text-lg leading-relaxed">{ch.text}</p></Reveal>
             <ChapterMedia c={ch} />
+            {/* Football and swimming share a chapter: the lower half hands the field over to the water. */}
+            {ch.field === 'football' && <span aria-hidden data-field="swimming" className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" />}
           </motion.li>
         ))}
       </ol>
@@ -382,7 +386,7 @@ function Timeline() {
 
 function Details() {
   return (
-    <div className="pt-[var(--section)]">
+    <div className="pt-[var(--section)]" data-field="it">
       <dl className="wrap grid grid-cols-2 gap-y-12 border-t hairline pt-12 sm:grid-cols-3 lg:grid-cols-5">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col-reverse">
@@ -406,7 +410,7 @@ function Details() {
 
 export function Bio() {
   return (
-    <section id="about" aria-labelledby="bio-title" data-section="about" data-section-label="About">
+    <section id="about" aria-labelledby="bio-title" data-section="about" data-section-label="About" data-field="intro">
       <Intro />
       <div className="wrap mb-12">
         <Skew max={4}>
@@ -415,6 +419,10 @@ export function Bio() {
             <span className="block serif-i font-normal tracking-[-0.02em]"><SplitText text="to the code." delay={0.2} /></span>
           </h2>
         </Skew>
+        <Link to="/story" className="group mt-10 inline-flex items-center gap-4 border-b hairline pb-2 text-lg" data-cursor="Read">
+          <TextRoll text="Read full story" />
+          <span aria-hidden className="transition-transform duration-500 ease-expo group-hover:translate-x-2">→</span>
+        </Link>
       </div>
       <Timeline />
       <Details />

@@ -49,6 +49,7 @@ export function Services() {
       id="services"
       data-section="services"
       data-section-label="Services"
+      data-field="cover"
       className="invert-scope relative z-10 -mt-[clamp(2rem,5vw,4rem)] rounded-t-[clamp(24px,4vw,56px)] py-[var(--section)] shadow-[0_-40px_80px_-40px_rgb(0_0_0/0.5)]"
       aria-labelledby="services-title"
     >
